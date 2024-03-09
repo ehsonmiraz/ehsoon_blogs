@@ -10793,6 +10793,12 @@ header.masthead .post-heading .meta a {
 }
 @media (min-width: 992px) {
   .post-preview > a > .post-title {
-    font-size: 2.25rem;
+    font-size: 3.25rem;
   }
+}
+
+.site-form{
+border: 1px solid #00dbb00,
+margin:20px 0 0 0,
+padding:10px
 }
