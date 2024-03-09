@@ -1,4 +1,4 @@
-{%extends 'base.html'%}
+{%extends 'root/base.html'%}
 {%load static%}
 {%block header%}
 <header class="masthead" style="background-image: url({%static 'assets/img/home-bg.jpg'%})">
@@ -12,7 +12,7 @@
         {% csrf_token %}
         {{ form.as_p }}
 
-        <button type="submit">Register</button>
+        <button class="btn btn-primary"  type="submit">Register</button>
     </form>
                         </div>
                     </div>

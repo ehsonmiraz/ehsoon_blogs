@@ -16,10 +16,12 @@ def signup_view(request):
     return render(request,'accounts/signup.html', {'form': form});
 
 def login_view(request):
+    if request.user.is_authenticated :
+        return redirect('articles:list')
 
-    if(request.method=='POST'):
+    if request.method=='POST' :
         form = AuthenticationForm(data=request.POST)
-        if(form.is_valid()):
+        if form.is_valid() :
             user = form.get_user()
             login(request, user)
             if request.POST.get('next') :
@@ -35,3 +37,5 @@ def logout_view(request):
         logout(request)
 
     return redirect('articles:list')
+
+

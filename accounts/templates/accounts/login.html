@@ -1,5 +1,6 @@
-{%extends 'base.html'%}
+{%extends 'root/base.html'%}
 {%load static %}
+
 {%block header%}
 <header class="masthead" style="background-image: url({%static 'assets/img/home-bg.jpg'%})">
             <div class="container position-relative px-4 px-lg-5">
@@ -7,12 +8,14 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
                             <h1>Welcome to Ehsoon Blogs</h1>
-                            <span class="subheading">Login</span>
+
                             <form class="site-form" method="post" action="{%url 'accounts:login' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="hidden" name="next" value="{{request.GET.next}}">
-        <button type="submit">Login</button>
+                                {% csrf_token %}
+                                {{ form.as_p }}
+    <input type="hidden" name="next" value="{{request.GET.next}}">
+    <div class="form-group">
+        <button class="btn btn-primary"  type="submit">Login</button>
+    </div>
     </form>
                         </div>
                     </div>

@@ -8,28 +8,34 @@ from .models import Article
 def articles_list(request):
     articles_list=Article.objects.all().order_by('date')
     print(len(articles_list))
-    context={
+    context = {
         'articles_list': articles_list,
         'title': 'blogs list'
     }
     return render(request,'articles/index.html',context=context)
 
 def articles_detail(request,slug):
-    article=Article.objects.get(slug=slug)
+    article = Article.objects.get(slug=slug)
     return render(request,'articles/post.html',{'article':article})
 
 @login_required(login_url="accounts:login")
 def create_post(request):
+    print("create post fired" + request.method)
     if request.method == 'POST':
         form = CreatePost(request.POST,request.FILES)
         if form.is_valid():
-            # article_instance = form.save(commit=False)
-            # article_instance.author = request.user
-            # article_instance.save()
+            article_instance = form.save(commit=False)
+            article_instance.author = request.user
+            article_instance.save()
             print("valid")
-            return redirect("article:list")
+            return redirect("articles:list")
         else:
             print("invalid")
     else:
-         form=CreatePost()
-    return render(request,'articles/createpost.html',{'form':form})
+        form = CreatePost()
+    return render(request,'articles/createpost.html', {'form' : form})
+
+def contact(request):
+    return render(request,'root/contact.html')
+def about(request):
+    return render(request,'root/about.html')
